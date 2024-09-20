@@ -25,6 +25,7 @@ jobs:
         with:
           clean: false
           repository: ClanEver/zed
+          ref: for-release
 
       - name: Setup build tools
         run: |
