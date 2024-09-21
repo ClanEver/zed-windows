@@ -27,6 +27,13 @@ jobs:
           repository: ClanEver/zed
           ref: for-release
 
+      - name: Fetch and Merge
+        run: |
+            git checkout for-release
+            git pull origin for-release
+            git fetch origin main
+            git merge origin/main
+
       - name: Setup build tools
         run: |
           rustc --version
