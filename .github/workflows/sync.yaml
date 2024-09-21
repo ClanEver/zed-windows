@@ -28,6 +28,9 @@ jobs:
     - name: Add Upstream Remote
       run: git remote add upstream https://github.com/zed-industries/zed.git
 
+    - name: pull
+      run: git pull
+
     - name: Fetch and Merge
       run: |
         git fetch upstream main
