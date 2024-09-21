@@ -25,14 +25,13 @@ jobs:
         with:
           clean: false
           repository: ClanEver/zed
-          ref: for-release
+          ref: main
 
       - name: Fetch and Merge
         run: |
-            git checkout for-release
-            git pull origin for-release
-            git fetch origin main
-            git merge origin/main
+            git checkout main
+            git fetch origin for-release
+            git merge origin/for-release
         fail-fast: true
 
       - name: Setup build tools
