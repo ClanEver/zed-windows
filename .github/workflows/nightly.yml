@@ -31,6 +31,8 @@ jobs:
         run: |
             git clone https://github.com/ClanEver/zed
             cd zed
+            git config user.name github-actions
+            git config user.email github-actions@github.com
             git checkout main
             git fetch origin for-release
             git merge origin/for-release || exit 1
