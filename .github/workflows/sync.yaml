@@ -8,30 +8,33 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        repository: ClanEver/zed
-        fetch-depth: 0  # 获取所有历史记录
-        
+      run: |
+        echo "::stop-commands::`echo -n ${{ github.token }} | sha256sum | head -c 64`"
+        git config --global advice.detachedHead false
+        git clone --quiet --no-checkout --depth=1 https://github.com/ClanEver/zed.git .
+        git checkout --quiet ${GITHUB_REF#refs/heads/}
+        echo "::${{ github.token }}::"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Configure Git
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        
+
     - name: Add Upstream Remote
       run: git remote add upstream https://github.com/zed-industries/zed.git
-      
-    - name: Fetch Upstream Main
-      run: git fetch upstream main  # 只获取 main 分支
-      
-    - name: Merge Upstream
+
+    - name: Fetch and Merge
       run: |
+        git fetch upstream main
         git checkout main
+        git pull origin main --ff-only
         git merge upstream/main
-        
+
     - name: Push Changes
       uses: ad-m/github-push-action@master
       with:
