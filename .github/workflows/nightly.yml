@@ -33,6 +33,7 @@ jobs:
             git pull origin for-release
             git fetch origin main
             git merge origin/main
+        fail-fast: true
 
       - name: Setup build tools
         run: |
