@@ -31,8 +31,7 @@ jobs:
         run: |
             git checkout main
             git fetch origin for-release
-            git merge origin/for-release
-        fail-fast: true
+            git merge origin/for-release || exit 1
 
       - name: Setup build tools
         run: |
