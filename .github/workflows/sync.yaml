@@ -25,21 +25,11 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
 
-    - name: Add Upstream Remote
-      run: git remote add upstream https://github.com/zed-industries/zed.git
-
-    - name: pull
-      run: git pull
-
     - name: Fetch and Merge
       run: |
-        git fetch upstream main
         git checkout main
-        git pull origin main --ff-only
+        git pull origin main
+        git remote add upstream https://github.com/zed-industries/zed.git
+        git fetch upstream main
         git merge upstream/main
-
-    - name: Push Changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
+        git pull
