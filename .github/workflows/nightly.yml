@@ -20,22 +20,24 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      # - name: Checkout repo
-      #   uses: actions/checkout@v4
-      #   with:
-      #     clean: false
-      #     repository: ClanEver/zed
-      #     ref: main
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          repository: ClanEver/zed
+          ref: main
 
       - name: Clone and Merge
         run: |
-            git clone https://github.com/ClanEver/zed
-            cd zed
+            # git clone https://github.com/ClanEver/zed
+            # cd zed
+            ls
+            pwd
             git config user.name github-actions
             git config user.email github-actions@github.com
             git checkout main
             git fetch origin for-release
-            git merge origin/for-release || exit 1
+            git merge origin/for-release
 
       - name: Setup build tools
         run: |
@@ -47,7 +49,10 @@ jobs:
         uses: Swatinem/rust-cache@v2
 
       - name: Build nightly
-        run: cargo build --release --locked --package zed
+        run: |
+            ls
+            pwd
+            cargo build --release --locked --package zed
 
       - name: Install cargo get package
         run: cargo install cargo-get
