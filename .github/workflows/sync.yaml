@@ -38,7 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push to Github
-      uses: x-actions/gh-pages@release/v1
+      uses: x-actions/git-push@v1.0
       env:
         GITHUB_EMAIL: "github-actions@github.com"
         GITHUB_USERNAME: "github-actions"
