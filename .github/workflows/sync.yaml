@@ -24,6 +24,7 @@ jobs:
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
+        git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Fetch and Merge
       run: |
@@ -32,17 +33,6 @@ jobs:
         git remote add upstream https://github.com/zed-industries/zed.git
         git fetch upstream main
         git merge upstream/main
-        # git push origin main
-        pwd
+        git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Push to Github
-      uses: x-actions/git-push@v1.0
-      env:
-        GITHUB_EMAIL: "github-actions@github.com"
-        GITHUB_USERNAME: "github-actions"
-        PUBLISH_REPO: https://${{ secrets.GitHub_PAT }}@github.com/ClanEver/repo.git
-        PUBLISH_BRANCH: main
-        PUBLISH_DIR: ./
-        # DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
