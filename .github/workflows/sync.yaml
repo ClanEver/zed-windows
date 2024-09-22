@@ -17,6 +17,7 @@ jobs:
         repository: ClanEver/zed
         ref: main
         fetch-depth: 0
+        token: ${{ secrets.SYNC_TOKEN }}
 
     - name: Configure Git
       run: |
