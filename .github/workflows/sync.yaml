@@ -30,4 +30,4 @@ jobs:
         git remote add upstream https://github.com/zed-industries/zed.git
         git fetch upstream main
         git merge upstream/main
-        git push origin main
+        git push https://${{ secrets.SYNC_TOKEN }}@github.com/ClanEver/zed.git main
