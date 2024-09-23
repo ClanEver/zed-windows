@@ -1,5 +1,6 @@
 # Define the repo owner and name
-$repoOwner = "geerteltink"
+# $repoOwner = "geerteltink"
+$repoOwner = "ClanEver"
 $repoName = "zed-windows"
 
 # Build the URL to get the latest release
