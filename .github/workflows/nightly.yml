@@ -6,7 +6,7 @@ permissions:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 21 * * 1,2,3,4,5,6"
+    - cron: "0 21 * * 1,2,3,4,5,7"
   push:
     tags:
       - "nightly"
