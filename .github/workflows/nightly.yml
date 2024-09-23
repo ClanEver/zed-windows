@@ -70,4 +70,4 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "${{ steps.vars.outputs.version }}-dev.${{ steps.vars.outputs.now }}" --title "${{ steps.vars.outputs.version }}-${{ steps.vars.outputs.now }}.${{ steps.vars.outputs.hash6 }}" --notes "Nightly v${{ steps.vars.outputs.version }}-dev.${{ steps.vars.outputs.now }} / ${{ steps.vars.outputs.hash }}" --repo ClanEver/zed-windows --latest target\release\zed.exe
+        run: gh release create "${{ steps.vars.outputs.version }}-dev.${{ steps.vars.outputs.now }}" --title "${{ steps.vars.outputs.version }}-${{ steps.vars.outputs.now }}-${{ steps.vars.outputs.hash6 }}" --notes "Nightly v${{ steps.vars.outputs.version }}-dev-${{ steps.vars.outputs.now }} / ${{ steps.vars.outputs.hash }}" --repo ClanEver/zed-windows --latest target\release\zed.exe
