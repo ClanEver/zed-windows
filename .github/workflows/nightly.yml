@@ -35,7 +35,6 @@ jobs:
             git checkout main
             git fetch origin for-release
             git merge origin/for-release
-            "`n[build]`ntarget-dir = `"C:/tmp/build`"" | Add-Content -Path Cargo.toml -Encoding UTF8
 
       - name: Setup build tools
         run: |
@@ -45,9 +44,11 @@ jobs:
 
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ". -> C:/tmp/build"
 
       - name: Build nightly
-        run: cargo build --release --locked --package zed
+        run: cargo build --release --locked --package --target-dir "C:/tmp/build" zed
 
       - name: Install cargo get package
         run: cargo install cargo-get
