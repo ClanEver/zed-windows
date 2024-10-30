@@ -48,7 +48,7 @@ jobs:
           workspaces: ". -> C:/tmp/build"
 
       - name: Build nightly
-        run: cargo build --release --locked --package --target-dir "C:/tmp/build" zed
+        run: cargo build --release --locked --package zed --target-dir "C:/tmp/build"
 
       - name: Install cargo get package
         run: cargo install cargo-get
