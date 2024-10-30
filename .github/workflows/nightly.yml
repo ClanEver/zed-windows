@@ -35,7 +35,7 @@ jobs:
             git checkout main
             git fetch origin for-release
             git merge origin/for-release
-            Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1
+            "`n[build]`ntarget-dir = `"C:/tmp/build`"" | Add-Content -Path Cargo.toml -Encoding UTF8
 
       - name: Setup build tools
         run: |
@@ -71,4 +71,4 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "${{ steps.vars.outputs.version }}-dev.${{ steps.vars.outputs.now }}" --title "${{ steps.vars.outputs.version }}-${{ steps.vars.outputs.now }}-${{ steps.vars.outputs.hash6 }}" --notes "Nightly v${{ steps.vars.outputs.version }}-dev-${{ steps.vars.outputs.now }} / ${{ steps.vars.outputs.hash }}" --repo ClanEver/zed-windows --latest target\release\zed.exe
+        run: gh release create "${{ steps.vars.outputs.version }}-dev.${{ steps.vars.outputs.now }}" --title "${{ steps.vars.outputs.version }}-${{ steps.vars.outputs.now }}-${{ steps.vars.outputs.hash6 }}" --notes "Nightly v${{ steps.vars.outputs.version }}-dev-${{ steps.vars.outputs.now }} / ${{ steps.vars.outputs.hash }}" --repo ClanEver/zed-windows --latest C:\tmp\build\release\zed.exe
